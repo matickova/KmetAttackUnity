@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
       propertyPath: m_Name
-      value: KmetFists
+      value: KmetFistsPr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7038840741242249971}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5297350439388784097}
   m_SourcePrefab: {fileID: 100100000, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
 --- !u!1 &5769429680920397660 stripped
 GameObject:
@@ -78,3 +81,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
   health: 3
+--- !u!136 &-5297350439388784097
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769429680920397660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.7344824
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9904687, z: 0}

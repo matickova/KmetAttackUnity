@@ -3,6 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
+    [Header("Attack")]
+    private float attackRange = 2f;
+    public int attackDamage = 1;
+    public KeyCode attackKey = KeyCode.Mouse0;
+
     [Header("Movement")]
     public float gravity = -9.81f;
 
@@ -42,6 +47,7 @@ public class FirstPersonController : MonoBehaviour
         HandleMouseLook();
         HandleMovement();
         HandleHeadBob();
+        HandleAttack();
     }
 
     void HandleMouseLook()
@@ -108,6 +114,25 @@ public class FirstPersonController : MonoBehaviour
                 cameraDefaultLocalPos,
                 Time.deltaTime * 5f
             );
+        }
+    }
+
+    void HandleAttack()
+    {
+        if (Input.GetKeyDown(attackKey))
+        {
+            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, attackRange))
+            {
+                EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(attackDamage);
+                    Debug.Log("Hit enemy! Health now: " + enemy.health);
+                }
+            } 
         }
     }
 }
