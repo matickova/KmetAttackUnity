@@ -5,8 +5,10 @@ public class GameScript : MonoBehaviour
 {
     private int towerHealth = 100;
     private float currentTime = 30f;
-    private const float waveTime = 30f;
+    private const float waveTime = 25f;
     private float spawnRadius = 25f;
+    private const int waveLimit = 3;
+    private int currentWave = 0;
 
     [SerializeField] private TextMeshProUGUI towerHealthText;
     [SerializeField] private GameObject enemyPrefab;
@@ -38,6 +40,7 @@ public class GameScript : MonoBehaviour
     }
     private void SpawnWave()
     {
+        currentWave += 1;
         if (enemyPrefab != null)
         {
             for (int i = 0; i <= 10; i++)
@@ -54,7 +57,7 @@ public class GameScript : MonoBehaviour
         towerHealthText.text = "Tower Health: " + towerHealth;
 
         currentTime += Time.deltaTime;
-        if (currentTime >= waveTime)
+        if (currentTime >= waveTime && currentWave < waveLimit)
         {
             SpawnWave();
             currentTime = 0f;
