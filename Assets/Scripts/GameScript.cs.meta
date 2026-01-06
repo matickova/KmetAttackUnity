@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 3950d5b0641714348ac57f375b506afa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - towerHealthText: {instanceID: 0}
+  - enemyPrefab: {fileID: 919132149155446097, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
