@@ -7,6 +7,8 @@ public class FirstPersonController : MonoBehaviour
     private float attackRange = 2f;
     public int attackDamage = 1;
     public KeyCode attackKey = KeyCode.Mouse0;
+    public Animator swordAnimator;
+    public bool isAttacking = false;
 
     [Header("Movement")]
     public float gravity = -9.81f;
@@ -119,20 +121,40 @@ public class FirstPersonController : MonoBehaviour
 
     void HandleAttack()
     {
-        if (Input.GetKeyDown(attackKey))
+        if (Input.GetKeyDown(attackKey) && !isAttacking)
         {
-            Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, attackRange))
-            {
-                EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(attackDamage);
-                    Debug.Log("Hit enemy! Health now: " + enemy.health);
-                }
-            } 
+            isAttacking = true;
+            PlaySwordAttack();
         }
+    }
+
+    public void PerformAttackHit()
+    {
+        Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, attackRange))
+        {
+            EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+                Debug.Log("Hit enemy! Health now: " + enemy.health);
+            }
+        }
+    }
+
+    public void OnAttackFinished()
+    {
+        Debug.Log("Finished");
+        isAttacking = false;
+    }
+
+    void PlaySwordAttack()
+    {
+        if (Random.value < 0.5f)
+            swordAnimator.SetTrigger("Attack1");
+        else
+            swordAnimator.SetTrigger("Attack2");
     }
 }
