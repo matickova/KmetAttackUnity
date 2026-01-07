@@ -3,6 +3,8 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
+    [SerializeField] private GameObject bloodParticlePrefab;
+
     private GameScript gameScript;
     private const float speed = 2f;
     public int health = 3;
@@ -44,9 +46,25 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+        SpawnBlood();
         if (health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    void SpawnBlood()
+    {
+        if (bloodParticlePrefab == null) return;
+        Vector3 spawnPos = transform.position + Vector3.up * 1.2f;
+        Vector3 toCamera = (Camera.main.transform.position - spawnPos).normalized;
+        if (toCamera.sqrMagnitude < 0.01f)
+            toCamera = Vector3.forward;
+
+        Instantiate(
+            bloodParticlePrefab,
+            spawnPos,
+            Quaternion.LookRotation(toCamera)
+            );
     }
 }

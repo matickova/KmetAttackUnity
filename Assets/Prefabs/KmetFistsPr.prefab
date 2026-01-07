@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b558759863d205b4e9cd9bfcd2bd6e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
+  bloodParticlePrefab: {fileID: 9133471351217522439, guid: fd18eac3ccffdae41816b96437ac066d, type: 3}
   health: 3
 --- !u!136 &-5297350439388784097
 CapsuleCollider:
