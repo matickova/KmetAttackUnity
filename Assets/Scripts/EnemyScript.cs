@@ -5,6 +5,7 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField] private GameObject bloodParticlePrefab;
 
+    public Animator animator;
     private GameScript gameScript;
     private const float speed = 2f;
     public int health = 3;
@@ -14,18 +15,33 @@ public class EnemyScript : MonoBehaviour
     private const float damageTime = 3f;
     private float damageTimer = 0f;
 
+    private float hitStunTime = 2f;
+    private float hitStunTimer = 0f;
+
+    
+
     void Start()
     {
         gameScript = FindAnyObjectByType<GameScript>();
+        animator = GetComponent<Animator>();
         health = Random.Range(1, 4);
     }
     void Update()
     {
+        if(hitStunTimer > 0f)
+        {
+            hitStunTimer -= Time.deltaTime;
+            animator.SetBool("IsMoving", false);
+            return;
+        }
+
         Vector3 flatPosition = new Vector3(transform.position.x, 0f, transform.position.z);
         Vector3 flatTarget = new Vector3(targetPosition.x, 0f, targetPosition.z);
         Vector3 direction = (flatTarget - flatPosition).normalized;
 
         float distance = Vector3.Distance(flatPosition, flatTarget);
+        bool isMoving = distance > stopDistance;
+        animator.SetBool("IsMoving", isMoving);
         if (distance > stopDistance)
         {
             transform.position += direction * speed * Time.deltaTime;
@@ -39,6 +55,7 @@ public class EnemyScript : MonoBehaviour
             {
                 damageTimer = 0;
                 gameScript.DamageTower(1);
+                animator.SetTrigger("Attack");
             }
         }
     }
@@ -46,6 +63,8 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
+        hitStunTimer = hitStunTime;
+        animator.SetTrigger("Hit");
         SpawnBlood();
         if (health <= 0)
         {

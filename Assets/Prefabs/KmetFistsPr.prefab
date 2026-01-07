@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: KmetFistsPr
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: db570fdfee24d8043862d85b79358634, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
