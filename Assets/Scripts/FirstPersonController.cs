@@ -46,10 +46,14 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        HandleMouseLook();
         HandleMovement();
-        HandleHeadBob();
         HandleAttack();
+    }
+
+    void LateUpdate()
+    {
+        HandleMouseLook();
+        HandleHeadBob();
     }
 
     void HandleMouseLook()
