@@ -10,12 +10,24 @@ public class GameScript : MonoBehaviour
     private const int waveLimit = 3;
     private int currentWave = 0;
 
+    [SerializeField] private AudioClip backgroundMusic;
+    private AudioSource musicSource;
+
     [SerializeField] private TextMeshProUGUI towerHealthText;
     [SerializeField] private GameObject[] enemyPrefabs;
 
     void Start()
     {
-        
+        musicSource = GetComponent<AudioSource>();
+
+        if (musicSource == null)
+            musicSource = gameObject.AddComponent<AudioSource>();
+
+        musicSource.clip = backgroundMusic;
+        musicSource.loop = true;
+        musicSource.playOnAwake = false;
+
+        musicSource.Play();
     }
     
     public void DamageTower(int amount)
