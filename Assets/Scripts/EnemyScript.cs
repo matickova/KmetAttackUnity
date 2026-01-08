@@ -69,6 +69,7 @@ public class EnemyScript : MonoBehaviour
     {
         if(isDying)
         {
+            PlaySoundAndDetach(GetRandomHitSound());
             return;
         }
 
@@ -79,7 +80,6 @@ public class EnemyScript : MonoBehaviour
         SpawnBlood();
         if (health <= 0)
         {
-            PlaySoundAndDetach(GetRandomHitSound());
             Die();
         }
     }
