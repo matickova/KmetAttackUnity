@@ -11,7 +11,7 @@ public class GameScript : MonoBehaviour
     private int currentWave = 0;
 
     [SerializeField] private TextMeshProUGUI towerHealthText;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
 
     void Start()
     {
@@ -41,13 +41,15 @@ public class GameScript : MonoBehaviour
     private void SpawnWave()
     {
         currentWave += 1;
-        if (enemyPrefab != null)
+        if (enemyPrefabs != null)
         {
             for (int i = 0; i <= 10; i++)
             {
                 Vector3 spawnPosition = RandomSpawnPoint(spawnRadius);
                 Quaternion rot = Quaternion.LookRotation(-spawnPosition);
-                Instantiate(enemyPrefab, spawnPosition, rot);
+
+                int randomIndex = Random.Range(0, enemyPrefabs.Length);
+                Instantiate(enemyPrefabs[randomIndex], spawnPosition, rot);
             }
 
         }

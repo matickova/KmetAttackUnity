@@ -1133,7 +1133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameScript
   towerHealthText: {fileID: 1053494317}
-  enemyPrefab: {fileID: 5769429680920397660, guid: 15cc134d4b2cb2e4d8427b5de2b62ea9, type: 3}
+  enemyPrefabs:
+  - {fileID: 5769429680920397660, guid: 15cc134d4b2cb2e4d8427b5de2b62ea9, type: 3}
+  - {fileID: 1114296573114150986, guid: 6bb20a56ecd95cf4fb112092f65105de, type: 3}
+  - {fileID: 3219845215252802000, guid: b3ea9a29f55a5954384c82f19ee9dca0, type: 3}
 --- !u!4 &193313458
 Transform:
   m_ObjectHideFlags: 0
@@ -15791,7 +15794,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: 3e2ab5561d5264244ac74fde104f4c3e, type: 2}
     - target: {fileID: 3848093242015602107, guid: 9792f6fb5bdadc44d80085727bc89d11, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 1047
+      value: 1111
       objectReference: {fileID: 0}
     - target: {fileID: 4286862776320766174, guid: 9792f6fb5bdadc44d80085727bc89d11, type: 3}
       propertyPath: m_Name
