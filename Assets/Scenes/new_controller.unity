@@ -7473,6 +7473,52 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 230625385}
   m_SourcePrefab: {fileID: 100100000, guid: eef6e6d364c24d047aef4a68047c5365, type: 3}
+--- !u!1 &1596942183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596942185}
+  - component: {fileID: 1596942184}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1596942184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596942183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d5063f216b78046baec640347e7e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  totalEnemies: 33
+  towerHealth: 100
+--- !u!4 &1596942185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596942183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 520.7505, y: 294.2219, z: -23.64035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1599022693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4800486886841238377, guid: 9792f6fb5bdadc44d80085727bc89d11, type: 3}
@@ -10662,3 +10708,4 @@ SceneRoots:
   - {fileID: 1872998974}
   - {fileID: 7270554792833226900}
   - {fileID: 81381415}
+  - {fileID: 1596942185}

@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class GameScript : MonoBehaviour
 {
     private int towerHealth = 100;
@@ -36,6 +36,10 @@ public class GameScript : MonoBehaviour
         if (towerHealth <= 0)
         {
             towerHealth = 0;
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene("los_screen");
         }
     }
 

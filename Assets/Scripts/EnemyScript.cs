@@ -72,6 +72,8 @@ public class EnemyScript : MonoBehaviour
         SpawnBlood();
         if (health <= 0)
         {
+            //sporoci kdaj umre za win_screen
+            FindObjectOfType<GameManager>().EnemyKilled();
             Destroy(gameObject);
             PlaySoundAndDetach(GetRandomHitSound());
             Destroy(gameObject);
