@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class EnemyScript : MonoBehaviour
 
     private const float damageTime = 3f;
     private float damageTimer = 0f;
+    private bool isDying = false;
 
     private float hitStunTime = 1.5f;
     private float hitStunTimer = 0f;
@@ -65,6 +67,11 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if(isDying)
+        {
+            return;
+        }
+
         health -= amount;
         hitStunTimer = hitStunTime;
         animator.SetTrigger("Hit");
@@ -72,9 +79,8 @@ public class EnemyScript : MonoBehaviour
         SpawnBlood();
         if (health <= 0)
         {
-            Destroy(gameObject);
             PlaySoundAndDetach(GetRandomHitSound());
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -124,4 +130,44 @@ public class EnemyScript : MonoBehaviour
 
         return hitSounds[Random.Range(0, hitSounds.Length)];
     }
+
+    void Die()
+    {
+        if (isDying)
+        { return; }
+
+        isDying = true;
+        enabled = false;
+        hitStunTimer = 0f;
+
+        animator.SetTrigger("Hit");
+
+        Collider col = GetComponent<Collider>();
+        if (col!= null)
+        {
+            col.enabled = false;
+        }
+        StartCoroutine(SinkAndDestroy());
+    }
+
+    IEnumerator SinkAndDestroy()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        animator.speed = 0f;
+        float sinkDuration = 2f;
+        float sinkSpeed = 0.8f;
+
+        float timer = 0f;
+
+        while (timer < sinkDuration)
+        {
+            transform.position += Vector3.down * sinkSpeed * Time.deltaTime;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
 }
