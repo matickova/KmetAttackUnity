@@ -5,7 +5,7 @@ public class GameScript : MonoBehaviour
 {
     private int towerHealth = 100;
     private float currentTime = 30f;
-    private const float waveTime = 25f;
+    private const float waveTime = 35f;
     private float spawnRadius = 25f;
     private const int waveLimit = 3;
     private int currentWave = 0;
@@ -43,7 +43,7 @@ public class GameScript : MonoBehaviour
         currentWave += 1;
         if (enemyPrefab != null)
         {
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 12; i++)
             {
                 Vector3 spawnPosition = RandomSpawnPoint(spawnRadius);
                 Quaternion rot = Quaternion.LookRotation(-spawnPosition);

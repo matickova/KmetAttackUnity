@@ -8,9 +8,9 @@ public class EnemyScript : MonoBehaviour
     public Animator animator;
     private GameScript gameScript;
     private const float speed = 2f;
-    public int health = 3;
+    public int health = 2;
     private Vector3 targetPosition = Vector3.zero;
-    private const float stopDistance = 8f;
+    private const float stopDistance = 5f;
 
     private const float damageTime = 3f;
     private float damageTimer = 0f;
@@ -24,7 +24,7 @@ public class EnemyScript : MonoBehaviour
     {
         gameScript = FindAnyObjectByType<GameScript>();
         animator = GetComponent<Animator>();
-        health = Random.Range(1, 4);
+        health = Random.Range(1, 3);
     }
     void Update()
     {
