@@ -82,10 +82,7 @@ public class EnemyScript : MonoBehaviour
         {
             //sporoci kdaj umre za win_screen
             FindObjectOfType<GameManager>().EnemyKilled();
-            Destroy(gameObject);
-            PlaySoundAndDetach(GetRandomHitSound());
             Die();
-            Destroy(gameObject);
         }
     }
 
