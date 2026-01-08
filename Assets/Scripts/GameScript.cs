@@ -4,7 +4,7 @@ using TMPro;
 public class GameScript : MonoBehaviour
 {
     private int towerHealth = 100;
-    private float currentTime = 30f;
+    private float currentTime = 35f;
     private const float waveTime = 35f;
     private float spawnRadius = 25f;
     private const int waveLimit = 3;
@@ -12,10 +12,21 @@ public class GameScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI towerHealthText;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private AudioClip backgroundMusic;
+    private AudioSource musicSource;
 
     void Start()
     {
-        
+        musicSource = GetComponent<AudioSource>();
+
+        if (musicSource == null)
+            musicSource = gameObject.AddComponent<AudioSource>();
+
+        musicSource.clip = backgroundMusic;
+        musicSource.loop = true;
+        musicSource.playOnAwake = false;
+
+        musicSource.Play();
     }
     
     public void DamageTower(int amount)

@@ -3,6 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip movementLoop;
+    private AudioSource audioSource;
+    private AudioSource movementAudioSource;
+
     [Header("Attack")]
     private float attackRange = 2f;
     public int attackDamage = 1;
@@ -38,6 +44,19 @@ public class FirstPersonController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         cameraDefaultLocalPos = cameraTransform.localPosition;
+
+         audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
+
+        movementAudioSource = gameObject.AddComponent<AudioSource>();
+        movementAudioSource.loop = true;
+        movementAudioSource.playOnAwake = false;
+        movementAudioSource.spatialBlend = 0f;
+
 
         // Lock and hide cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -76,6 +95,7 @@ public class FirstPersonController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+        bool isMoving = move.magnitude > 0.1f && controller.isGrounded;
 
         if (controller.isGrounded && verticalVelocity < 0)
         {
@@ -93,6 +113,7 @@ public class FirstPersonController : MonoBehaviour
         velocity.y = verticalVelocity;
 
         controller.Move(velocity * Time.deltaTime);
+        HandeMovementSound(isMoving);
     }
     void HandleHeadBob()
     {
@@ -156,9 +177,35 @@ public class FirstPersonController : MonoBehaviour
 
     void PlaySwordAttack()
     {
+        PlayAttackSound();
         if (Random.value < 0.5f)
             swordAnimator.SetTrigger("Attack1");
         else
             swordAnimator.SetTrigger("Attack2");
+    }
+
+    void PlayAttackSound()
+    {
+        if (attackSounds == null || attackSounds.Length == 0)
+            return;
+
+        AudioClip clip = attackSounds[Random.Range(0, attackSounds.Length)];
+        audioSource.PlayOneShot(clip);
+    }
+
+    void HandeMovementSound(bool isMoving)
+    {
+        if (!isMoving || movementLoop == null)
+        {
+            if (movementAudioSource.isPlaying)
+                movementAudioSource.Stop();
+            return;
+        }
+
+        if (!movementAudioSource.isPlaying)
+        {
+            movementAudioSource.clip = movementLoop;
+            movementAudioSource.Play();
+        }
     }
 }

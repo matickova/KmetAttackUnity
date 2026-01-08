@@ -4,6 +4,8 @@ public class EnemyScript : MonoBehaviour
 {
 
     [SerializeField] private GameObject bloodParticlePrefab;
+    [SerializeField] private AudioClip[] hitSounds;
+    private AudioSource audioSource;
 
     public Animator animator;
     private GameScript gameScript;
@@ -24,6 +26,7 @@ public class EnemyScript : MonoBehaviour
     {
         gameScript = FindAnyObjectByType<GameScript>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         health = Random.Range(1, 3);
     }
     void Update()
@@ -65,9 +68,12 @@ public class EnemyScript : MonoBehaviour
         health -= amount;
         hitStunTimer = hitStunTime;
         animator.SetTrigger("Hit");
+        PlayRandomHitSound();
         SpawnBlood();
         if (health <= 0)
         {
+            Destroy(gameObject);
+            PlaySoundAndDetach(GetRandomHitSound());
             Destroy(gameObject);
         }
     }
@@ -85,5 +91,37 @@ public class EnemyScript : MonoBehaviour
             spawnPos,
             Quaternion.LookRotation(toCamera)
             );
+    }
+
+    void PlayRandomHitSound()
+    {
+        if (hitSounds == null || hitSounds.Length == 0 || audioSource == null)
+            return;
+
+        int index = Random.Range(0, hitSounds.Length);
+        audioSource.PlayOneShot(hitSounds[index]);
+    }
+
+    void PlaySoundAndDetach(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        GameObject audioObject = new GameObject("TempAudio");
+        audioObject.transform.position = transform.position;
+
+        AudioSource source = audioObject.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.spatialBlend = 1f;
+        source.Play();
+
+        Destroy(audioObject, clip.length);
+    }
+
+    AudioClip GetRandomHitSound()
+    {
+        if (hitSounds == null || hitSounds.Length == 0)
+            return null;
+
+        return hitSounds[Random.Range(0, hitSounds.Length)];
     }
 }
