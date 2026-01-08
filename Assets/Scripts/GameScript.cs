@@ -3,6 +3,7 @@ using TMPro;
 
 public class GameScript : MonoBehaviour
 {
+    public HealthBarUI healthBarUI;
     private int towerHealth = 100;
     private float currentTime = 30f;
     private const float waveTime = 25f;
@@ -33,6 +34,7 @@ public class GameScript : MonoBehaviour
     public void DamageTower(int amount)
     {
         towerHealth -= amount;
+        healthBarUI.UpdateHealth(towerHealth);
         if (towerHealth <= 0)
         {
             towerHealth = 0;
