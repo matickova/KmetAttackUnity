@@ -17,7 +17,7 @@ public class EnemyScript : MonoBehaviour
     private const float damageTime = 3f;
     private float damageTimer = 0f;
 
-    private float hitStunTime = 2f;
+    private float hitStunTime = 1.5f;
     private float hitStunTimer = 0f;
 
     

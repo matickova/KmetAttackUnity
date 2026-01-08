@@ -4,29 +4,18 @@ using TMPro;
 public class GameScript : MonoBehaviour
 {
     private int towerHealth = 100;
-    private float currentTime = 35f;
-    private const float waveTime = 35f;
+    private float currentTime = 30f;
+    private const float waveTime = 25f;
     private float spawnRadius = 25f;
     private const int waveLimit = 3;
     private int currentWave = 0;
 
     [SerializeField] private TextMeshProUGUI towerHealthText;
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private AudioClip backgroundMusic;
-    private AudioSource musicSource;
+    [SerializeField] private GameObject[] enemyPrefabs;
 
     void Start()
     {
-        musicSource = GetComponent<AudioSource>();
-
-        if (musicSource == null)
-            musicSource = gameObject.AddComponent<AudioSource>();
-
-        musicSource.clip = backgroundMusic;
-        musicSource.loop = true;
-        musicSource.playOnAwake = false;
-
-        musicSource.Play();
+        
     }
     
     public void DamageTower(int amount)
@@ -52,13 +41,15 @@ public class GameScript : MonoBehaviour
     private void SpawnWave()
     {
         currentWave += 1;
-        if (enemyPrefab != null)
+        if (enemyPrefabs != null)
         {
-            for (int i = 0; i <= 12; i++)
+            for (int i = 0; i <= 10; i++)
             {
                 Vector3 spawnPosition = RandomSpawnPoint(spawnRadius);
                 Quaternion rot = Quaternion.LookRotation(-spawnPosition);
-                Instantiate(enemyPrefab, spawnPosition, rot);
+
+                int randomIndex = Random.Range(0, enemyPrefabs.Length);
+                Instantiate(enemyPrefabs[randomIndex], spawnPosition, rot);
             }
 
         }

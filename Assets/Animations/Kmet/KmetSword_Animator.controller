@@ -166,7 +166,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -820951429982232487, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+  m_Motion: {fileID: 2787971512142170465, guid: f0742ab50e0f7ea489b02c93d02b0c7e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -220,7 +220,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 14714776983925720, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+  m_Motion: {fileID: 4320923263143440489, guid: f0742ab50e0f7ea489b02c93d02b0c7e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -232,7 +232,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kmet_Animator
+  m_Name: KmetSword_Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsMoving
@@ -318,7 +318,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -664848234975006106, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+  m_Motion: {fileID: 6298860241400990667, guid: f0742ab50e0f7ea489b02c93d02b0c7e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -397,7 +397,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8122295292245662830, guid: 7f1c621c0f1e1874fa6961e33e995d2f, type: 3}
+  m_Motion: {fileID: 3432569583370252157, guid: f0742ab50e0f7ea489b02c93d02b0c7e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
